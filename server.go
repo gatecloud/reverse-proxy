@@ -18,8 +18,9 @@ type Server struct {
 	CustomConfigs CustomConfig
 }
 
-func (s *Server) ReverseProxy() gin.HandlerFunc {
+func (s Server) ReverseProxy() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
+
 		director := func(req *http.Request) {
 			req.Host = s.ProxyPass
 			req.URL.Host = s.ProxyPass
