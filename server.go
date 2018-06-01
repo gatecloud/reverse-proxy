@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,12 +21,12 @@ type Server struct {
 
 func ReverseProxy(s Server) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-
+		suffixPath := strings.Replace(ctx.Request.RequestURI, s.Path, "", 1)
 		director := func(req *http.Request) {
 			req.Host = s.ProxyPass
 			req.URL.Host = s.ProxyPass
 			req.URL.Scheme = s.ProxyScheme
-			req.URL.Path = s.ProxyPassPath
+			req.URL.Path = s.ProxyPassPath + suffixPath
 		}
 
 		proxy := httputil.NewSingleHostReverseProxy(&url.URL{})
