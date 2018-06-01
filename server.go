@@ -21,7 +21,7 @@ type Server struct {
 
 func ReverseProxy(s Server) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		suffixPath := strings.Replace(ctx.Request.RequestURI, s.Path, "", 1)
+		suffixPath := strings.Replace(ctx.Request.URL.Path, s.Path, "", 1)
 		director := func(req *http.Request) {
 			req.Host = s.ProxyPass
 			req.URL.Host = s.ProxyPass
