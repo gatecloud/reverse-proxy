@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Server storing target destinations' information
 type Server struct {
 	Method        string
 	Path          string
@@ -19,13 +20,15 @@ type Server struct {
 	CustomConfigs CustomConfig
 }
 
-func ReverseProxy(s Server) gin.HandlerFunc {
+// ReverseProxy forwards requests from upper proxy or clients to the corresponding destination
+func (s Server) ReverseProxy() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		suffixPath := strings.Replace(ctx.Request.URL.Path, s.Path, "", 1)
 		director := func(req *http.Request) {
 			req.Host = s.ProxyPass
 			req.URL.Host = s.ProxyPass
 			req.URL.Scheme = s.ProxyScheme
+			// Process the specific URL format, such as: http://xxx.api.user:id
+			suffixPath := strings.Replace(ctx.Request.URL.Path, s.Path, "", 1)
 			req.URL.Path = s.ProxyPassPath + suffixPath
 		}
 
