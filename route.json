@@ -1,0 +1,83 @@
+
+[
+    {
+		"Method": "GET",
+		"Path": "/v1/api/Users",
+		"ProxyScheme": "http",
+		"ProxyPass": "127.0.0.1:123",
+		"ProxyPassPath": "/api/Users",
+		"APIVersion": "v1",
+		"CustomConfigs": {
+			"Authentication": false,
+			"Cached": true,
+			"CachedDurationsInSecond": 10
+		}
+	},
+    { 
+        "Method":"GET",
+        "Path" : "/v1/Academics:id",
+        "ProxyScheme" : "http",
+        "ProxyPass" : "127.0.0.1:8021",
+        "ProxyPassPath" : "/Academics",
+        "APIVersion": "v1",
+        "CustomConfigs" :{
+                "Cached":true,
+                "CachedDurationsInSecond":10 ,
+                "Authentication": false
+                }
+            
+    },
+    { 
+        "Method":"GET",
+        "Path" : "/v0.1/Academics",
+        "ProxyScheme" : "http",
+        "ProxyPass" : "127.0.0.1:8021",
+        "ProxyPassPath" : "/Academics",
+        "APIVersion": "v0.1",
+        "CustomConfigs" :{
+                "Cached":true,
+                "CachedDurationsInSecond":10 ,
+                "Authentication": true
+                }  
+    },
+    { 
+        "Method":"POST",
+        "Path" : "/Users",
+        "ProxyScheme" : "http",
+        "ProxyPass" : "127.0.0.1:8060",
+        "ProxyPassPath" : "/Users1",
+        "APIVersion": "v0.1",
+        "CustomConfigs" :{
+                "Cached":true,
+                "CachedDurationsInSecond":10 ,
+                "Authentication": false
+                }  
+    },
+    { 
+        "Method":"POST",
+        "Path" : "/token",
+        "ProxyScheme" : "http",
+        "ProxyPass" : "127.0.0.1:8062",
+        "ProxyPassPath" : "/token",
+        "APIVersion": "v0.1",
+        "CustomConfigs" :{
+                "Cached":true,
+                "CachedDurationsInSecond":10 ,
+                "Authentication": false
+                }  
+    },
+    { 
+        "Method":"GET",
+        "Path" : "/token",
+        "ProxyScheme" : "http",
+        "ProxyPass" : "127.0.0.1:8060",
+        "ProxyPassPath" : "/token",
+        "APIVersion": "v0.1",
+        "CustomConfigs" :{
+                "Cached":true,
+                "CachedDurationsInSecond":10 ,
+                "Authentication": false
+                }  
+    }
+
+]
