@@ -2,6 +2,19 @@
 [
     {
 		"Method": "GET",
+		"Path": "/api/Users",
+		"ProxyScheme": "http",
+		"ProxyPass": "127.0.0.1:125",
+		"ProxyPassPath": "/Users",
+		"APIVersion": "v1",
+		"CustomConfigs": {
+			"Authentication": false,
+			"Cached": true,
+			"CachedDurationsInSecond": 10
+		}
+	},
+    {
+		"Method": "GET",
 		"Path": "/v1/api/Users",
 		"ProxyScheme": "http",
 		"ProxyPass": "127.0.0.1:123",
